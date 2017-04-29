@@ -20,8 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeFragment extends Fragment {
-    TextView thoughtTitle, thoughtDetail;
+    @BindView(R.id.thoughtitle) TextView thoughtTitle;
+    @BindView(R.id.thoughtdetail) TextView thoughtDetail;
     private SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
 
@@ -33,8 +37,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        thoughtTitle = (TextView) rootView.findViewById(R.id.thoughtitle);
-        thoughtDetail = (TextView) rootView.findViewById(R.id.thoughtdetail);
+        ButterKnife.bind(this, rootView);
 
         ThoughtDbHelper thoughtDbHelper = new ThoughtDbHelper(getActivity());
         sqLiteDatabase = thoughtDbHelper.getWritableDatabase();
@@ -53,7 +56,7 @@ public class HomeFragment extends Fragment {
                 String firebaseThoughtTitle = dataSnapshot.child("title").getValue(String.class);
                 String firebaseThoughtDetails = dataSnapshot.child("data").getValue(String.class);
 
-                if(cursor.getString(cursor.getColumnIndex(ThoughtContract.ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
+                if(cursor.getCount() != 0 && cursor.getString(cursor.getColumnIndex(ThoughtContract.ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
 
                 } else {
                     thoughtTitle.setText(firebaseThoughtTitle);
