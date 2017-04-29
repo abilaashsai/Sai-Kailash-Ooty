@@ -1,8 +1,8 @@
 package com.example.abilashr.saikailashooty;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
                 String value = dataSnapshot.child("title").getValue(String.class);
                 String desc = dataSnapshot.child("data").getValue(String.class);
                 thoughtTitle.setText(value);
+                thoughtTitle.setPaintFlags(thoughtTitle.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
                 thoughtDetail.setText(desc);
             }
 

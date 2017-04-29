@@ -1,31 +1,60 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/colorBackground"
-              android:orientation="vertical"
-              tools:context="com.example.abilashr.saikailashooty.HomeFragment">
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorBackground"
+  >
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Thought for the Day"
-    android:gravity="center"
-    android:textColor="@color/colorWhite"/>
+    android:layout_height="match_parent"
+    tools:context="com.example.abilashr.saikailashooty.HomeFragment">
 
-  <TextView
-    android:id="@+id/thoughtitle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:textColor="@color/colorWhite"/>
+    <TextView
+      android:id="@+id/heading"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif-smallcaps"
+      android:gravity="center"
+      android:paddingTop="10dp"
+      android:text="Thought for the Day"
+      android:textColor="#BF360C"
+      android:textSize="22dp"/>
 
-  <TextView
-    android:id="@+id/thoughtdetail"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:textColor="@color/colorWhite"/>
+    <TextView
+      android:id="@+id/thoughtitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="5dp"
+      android:layout_below="@+id/heading"
+      android:fontFamily="sans-serif-smallcaps"
+      android:gravity="center"
+      android:textColor="@color/colorWhite"
+      android:textSize="20dp"/>
 
-</LinearLayout>
+    <ImageView
+      android:id="@+id/blessingsImage"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/thoughtitle"
+      android:scaleType="fitCenter"
+      android:scaleX="0.80"
+      android:scaleY="0.80"
+      android:src="@drawable/sai_blessings"/>
+
+
+
+    <TextView
+      android:id="@+id/thoughtdetail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/blessingsImage"
+      android:fontFamily="sans-serif-bold"
+      android:gravity="center"
+      android:textColor="@color/colorWhite"
+      android:textSize="20dp"/>
+
+  </RelativeLayout>
+</ScrollView>
+
