@@ -5,5 +5,8 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <string name="action_settings">Settings</string>
+  <string name="thought" translatable="false">thought</string>
+  <string name="title" translatable="false">title</string>
+  <string name="data" translatable="false">data</string>
 
 </resources>
