@@ -71,7 +71,6 @@ public class ThoughtContentProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         if(match == THOUGHT) {
             sqLiteDatabase.execSQL("delete from " + ThoughtContract.ThoughtEntry.TABLE_NAME);
-            Toast.makeText(getContext(), "deleted", Toast.LENGTH_SHORT).show();
         }
         return 0;
     }

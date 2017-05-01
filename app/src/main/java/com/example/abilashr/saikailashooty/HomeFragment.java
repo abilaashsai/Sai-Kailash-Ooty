@@ -43,17 +43,21 @@ public class HomeFragment extends Fragment {
         populateThoughtsFromDatabaseIfExist();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(getResources().getString(R.string.thought));
+        DatabaseReference databaseReference = database.getReference(getResources().getString(R.string.thought));
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String firebaseThoughtTitle = dataSnapshot.child(getResources().getString(R.string.title)).getValue(String.class);
                 String firebaseThoughtDetails = dataSnapshot.child(getResources().getString(R.string.data)).getValue(String.class);
-
-                if(cursor.getCount() != 0 && !cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
+                if(cursor.getCount() != 0) {
+                    if(!cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
+                        addThoughtsIntoDatabase(firebaseThoughtTitle, firebaseThoughtDetails);
+                        populateThoughtsFromDatabaseIfExist();
+                    }
+                } else {
                     addThoughtsIntoDatabase(firebaseThoughtTitle, firebaseThoughtDetails);
-                    updateUI();
+                    populateThoughtsFromDatabaseIfExist();
                 }
             }
 
