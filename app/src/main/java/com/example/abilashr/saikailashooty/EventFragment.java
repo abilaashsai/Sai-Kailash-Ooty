@@ -28,9 +28,9 @@ public class EventFragment extends Fragment {
         fragmentTabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
         fragmentTabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
         TabHost.TabSpec tabSpecUpcoming = fragmentTabHost.newTabSpec(getResources().getString(R.string.upcoming)).setIndicator(getResources().getString(R.string.upcoming), null);
-        fragmentTabHost.addTab(tabSpecUpcoming, ArticleFragment.class, null);
+        fragmentTabHost.addTab(tabSpecUpcoming, UpcomingFragment.class, null);
         TabHost.TabSpec tabSpecPast = fragmentTabHost.newTabSpec(getResources().getString(R.string.past)).setIndicator(getResources().getString(R.string.past), null);
-        fragmentTabHost.addTab(tabSpecPast, LocationFragment.class, null);
+        fragmentTabHost.addTab(tabSpecPast, PastFragment.class, null);
 
         upcomingEventSelected();
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
