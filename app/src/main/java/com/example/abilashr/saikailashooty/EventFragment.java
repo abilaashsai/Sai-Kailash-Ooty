@@ -1,23 +1,16 @@
 package com.example.abilashr.saikailashooty;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EventFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EventFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EventFragment extends Fragment {
+
+    FragmentTabHost fragmentTabHost;
 
     public EventFragment() {
     }
@@ -31,7 +24,35 @@ public class EventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_event, container, false);
+        fragmentTabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
+        fragmentTabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
+        TabHost.TabSpec tabSpecUpcoming = fragmentTabHost.newTabSpec(getResources().getString(R.string.upcoming)).setIndicator(getResources().getString(R.string.upcoming), null);
+        fragmentTabHost.addTab(tabSpecUpcoming, ArticleFragment.class, null);
+        TabHost.TabSpec tabSpecPast = fragmentTabHost.newTabSpec(getResources().getString(R.string.past)).setIndicator(getResources().getString(R.string.past), null);
+        fragmentTabHost.addTab(tabSpecPast, LocationFragment.class, null);
+
+        upcomingEventSelected();
+        fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                if(fragmentTabHost.getCurrentTab() == 0) {
+                    upcomingEventSelected();
+                } else {
+                    pastEventSelected();
+                }
+            }
+        });
+        return rootView;
+    }
+
+    private void pastEventSelected() {
+        fragmentTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_selector_selected);
+        fragmentTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.upcoming_tab_selector_not_selected);
+    }
+
+    private void upcomingEventSelected() {
+        fragmentTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_selector_selected);
+        fragmentTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.past_tab_selector_not_selected);
     }
 }

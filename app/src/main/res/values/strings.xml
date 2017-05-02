@@ -8,5 +8,7 @@
   <string name="thought" translatable="false">thought</string>
   <string name="title" translatable="false">title</string>
   <string name="data" translatable="false">data</string>
+  <string name="upcoming">upcoming</string>
+  <string name="past">past</string>
 
 </resources>
