@@ -48,16 +48,18 @@ public class HomeFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String firebaseThoughtTitle = dataSnapshot.child(getResources().getString(R.string.title)).getValue(String.class);
-                String firebaseThoughtDetails = dataSnapshot.child(getResources().getString(R.string.data)).getValue(String.class);
-                if(cursor.getCount() != 0) {
-                    if(!cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
+                if(isAdded() && getActivity() != null) {
+                    String firebaseThoughtTitle = dataSnapshot.child(getResources().getString(R.string.title)).getValue(String.class);
+                    String firebaseThoughtDetails = dataSnapshot.child(getResources().getString(R.string.data)).getValue(String.class);
+                    if(cursor.getCount() != 0) {
+                        if(!cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_TITLE)).equals(firebaseThoughtTitle)) {
+                            addThoughtsIntoDatabase(firebaseThoughtTitle, firebaseThoughtDetails);
+                            populateThoughtsFromDatabaseIfExist();
+                        }
+                    } else {
                         addThoughtsIntoDatabase(firebaseThoughtTitle, firebaseThoughtDetails);
                         populateThoughtsFromDatabaseIfExist();
                     }
-                } else {
-                    addThoughtsIntoDatabase(firebaseThoughtTitle, firebaseThoughtDetails);
-                    populateThoughtsFromDatabaseIfExist();
                 }
             }
 
