@@ -44,17 +44,17 @@ public class DataContentProvider extends android.content.ContentProvider {
                     projection,
                     selection,
                     selectionArgs,
-                    sortorder,
                     null,
-                    null);
+                    null,
+                    sortorder);
         }
         return sqLiteDatabase.query(EventEntry.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
-                sortorder,
                 null,
-                null);
+                null,
+                sortorder);
     }
 
     @Nullable

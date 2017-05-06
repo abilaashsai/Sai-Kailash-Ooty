@@ -29,7 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 EventEntry.TABLE_NAME + " (" +
                 EventEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EventEntry.EVENT_NAME + " TEXT NOT NULL," +
-                EventEntry.EVENT_DATE + " TEXT NOT NULL," +
+                EventEntry.EVENT_DATE + " TIMESTAMP NOT NULL," +
                 EventEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_EVENT_TABLE);

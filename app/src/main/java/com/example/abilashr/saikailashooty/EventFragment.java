@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,8 +48,7 @@ public class EventFragment extends Fragment {
         TabHost.TabSpec tabSpecPast = fragmentTabHost.newTabSpec(getResources().getString(R.string.past)).setIndicator(getResources().getString(R.string.past), null);
         fragmentTabHost.addTab(tabSpecPast, PastFragment.class, null);
 
-        final String timeBeforeDatabaseUpdate = getDateTime();
-
+        final String timeBeforeDatabaseUpdate = getDateAndTime();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         String events = getResources().getString(R.string.events);
         String upcoming = getResources().getString(R.string.upcoming);
@@ -64,7 +64,7 @@ public class EventFragment extends Fragment {
                         for(DataSnapshot day : month.getChildren()) {
                             String date = day.child(getResources().getString(R.string.date)).getValue(String.class);
                             String name = day.child(getResources().getString(R.string.message)).getValue(String.class);
-                             addValuesDatabaseIfnotExist(date, name);
+                            addValuesDatabaseIfnotExist(date, name);
                         }
                     }
                 }
@@ -93,7 +93,7 @@ public class EventFragment extends Fragment {
     }
 
     private void deleteValuesInDatabaseNotFound(String dateTime) {
-        getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry.COLUMN_TIMESTAMP + "< '" + dateTime+"'", null);
+        getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry.COLUMN_TIMESTAMP + "< '" + dateTime + "'", null);
     }
 
     private Cursor getAllEventsFromDatabase() {
@@ -104,14 +104,31 @@ public class EventFragment extends Fragment {
         Cursor eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "= '" + name + "' AND " + DataContract.EventEntry.EVENT_DATE + "= '" + date + "'", null, null);
         ContentValues contentValues = new ContentValues();
         if(eventFromDatabase.getCount() != 0) {
-            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateTime());
+            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
         } else {
             contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
-            contentValues.put(DataContract.EventEntry.EVENT_DATE, date);
-            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateTime());
+            contentValues.put(DataContract.EventEntry.EVENT_DATE, getTimstampforDate(date));
+            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
             getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
 
         }
+    }
+
+    private String getTimstampforDate(String dateString) {
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        DateFormat input = new SimpleDateFormat("dd MMM yyyy");
+        Date date = new Date();
+
+        try {
+            date = input.parse(dateString);
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateFormat.format(date);
     }
 
     private void pastEventSelected() {
@@ -124,7 +141,7 @@ public class EventFragment extends Fragment {
         fragmentTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.past_tab_selector_not_selected);
     }
 
-    private String getDateTime() {
+    private String getDateAndTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date date = new Date();

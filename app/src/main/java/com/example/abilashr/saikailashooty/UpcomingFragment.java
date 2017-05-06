@@ -10,7 +10,10 @@ import android.widget.ListView;
 
 import com.example.abilashr.saikailashooty.data.DataContract;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class UpcomingFragment extends Fragment {
     Cursor cursor;
@@ -30,7 +33,7 @@ public class UpcomingFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_upcoming, container, false);
 
-        cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, null, null, null);
+        cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_DATE + "> '" + getDateAndTime() + "'", null, DataContract.EventEntry.EVENT_DATE);
         CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(getContext(), cursor);
         if(cursor.getCount() != 0) {
             cursor.moveToNext();
@@ -38,5 +41,12 @@ public class UpcomingFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.upcomingList);
         listView.setAdapter(customCursorAdapter);
         return rootView;
+    }
+
+    private String getDateAndTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

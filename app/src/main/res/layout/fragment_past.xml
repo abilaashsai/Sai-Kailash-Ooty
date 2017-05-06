@@ -1,17 +1,37 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.example.abilashr.saikailashooty.PastFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.example.abilashr.saikailashooty.PastFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <Space
+    android:id="@+id/spaceFirst"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Hello past fragment"/>
-  <ListView
+    android:layout_height="15dp"/>
+
+  <TextView
+    android:id="@+id/title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/upcomingList"/>
+    android:layout_below="@+id/spaceFirst"
+    android:fontFamily="sans-serif-smallcaps"
+    android:gravity="center"
+    android:text="With Swami's Grace"
+    android:textColor="@color/colorBlue"
+    android:textSize="25dp"/>
 
-</FrameLayout>
+  <Space
+    android:id="@+id/space"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_below="@+id/title"/>
+
+  <ListView
+    android:id="@+id/pastList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/space"
+    android:dividerHeight="10sp"
+    />
+
+</RelativeLayout>

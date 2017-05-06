@@ -1,6 +1,7 @@
 package com.example.abilashr.saikailashooty;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.abilashr.saikailashooty.data.DataContract;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PastFragment extends Fragment {
+    Cursor cursor;
+
     public PastFragment() {
         // Required empty public constructor
     }
@@ -26,16 +34,19 @@ public class PastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_past, container, false);
-        ArrayList<String> arrayList=new ArrayList<>();
-        arrayList.add("one");
-        arrayList.add("two");
-        arrayList.add("three");
-        arrayList.add("four");
-        arrayList.add("five");
-        arrayList.add("six");
-        CustomBaseAdapter customBaseAdapter=new CustomBaseAdapter(getContext(),arrayList);
-        ListView listView = (ListView) rootView.findViewById(R.id.upcomingList);
-        listView.setAdapter(customBaseAdapter);
+        cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_DATE + "< '" + getDateAndTime() + "'", null, DataContract.EventEntry.EVENT_DATE);
+        CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(getContext(), cursor);
+        if(cursor.getCount() != 0) {
+            cursor.moveToNext();
+        }
+        ListView listView = (ListView) rootView.findViewById(R.id.pastList);
+        listView.setAdapter(customCursorAdapter);
         return rootView;
+    }
+    private String getDateAndTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
