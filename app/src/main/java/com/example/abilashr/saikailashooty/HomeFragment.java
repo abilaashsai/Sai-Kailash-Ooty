@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.abilashr.saikailashooty.data.ThoughtContract;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.abilashr.saikailashooty.data.ThoughtContract.*;
+import static com.example.abilashr.saikailashooty.data.DataContract.*;
 
 public class HomeFragment extends Fragment {
     @BindView(R.id.thoughtitle)

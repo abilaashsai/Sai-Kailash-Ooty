@@ -20,7 +20,11 @@
     </activity>
     <provider
       android:authorities="com.example.abilashr.saikailashooty"
-      android:name="com.example.abilashr.saikailashooty.data.ThoughtContentProvider"
+      android:name="com.example.abilashr.saikailashooty.data.DataContentProvider"
+      android:exported="false"/>
+    <provider
+      android:authorities="com.example.abilashr.saikailashooty"
+      android:name="com.example.abilashr.saikailashooty.data.EventContentProvider"
       android:exported="false"/>
   </application>
 

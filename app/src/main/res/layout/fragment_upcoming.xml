@@ -4,10 +4,10 @@
              android:layout_height="match_parent"
              tools:context="com.example.abilashr.saikailashooty.UpcomingFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <ListView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Hello Upcoming fragment"/>
+    android:layout_height="wrap_content"
+    android:dividerHeight="10sp"
+    android:id="@+id/upcomingList"/>
 
 </FrameLayout>
