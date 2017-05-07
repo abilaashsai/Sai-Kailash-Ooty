@@ -16,22 +16,29 @@
     android:layout_below="@+id/spaceFirst"
     android:fontFamily="sans-serif-smallcaps"
     android:gravity="center"
-    android:text="With Swami's Grace"
+    android:text="@string/grace"
     android:textColor="@color/colorBlue"
     android:textSize="25dp"/>
+
+  <View
+    android:id="@+id/line"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_below="@+id/title"
+    android:background="@color/colorPrimaryDark"/>
 
   <Space
     android:id="@+id/space"
     android:layout_width="match_parent"
     android:layout_height="30dp"
-    android:layout_below="@+id/title"/>
+    android:layout_below="@+id/line"/>
 
   <ListView
     android:id="@+id/pastList"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/space"
-    android:dividerHeight="10sp"
+    android:divider="@null"
     />
 
 </RelativeLayout>

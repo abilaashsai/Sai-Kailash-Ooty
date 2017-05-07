@@ -57,18 +57,20 @@ public class EventFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                Calendar c = Calendar.getInstance();
-                for(DataSnapshot year : dataSnapshot.getChildren()) {
-                    for(DataSnapshot month : year.getChildren()) {
-                        for(DataSnapshot day : month.getChildren()) {
-                            String date = day.child(getResources().getString(R.string.date)).getValue(String.class);
-                            String name = day.child(getResources().getString(R.string.message)).getValue(String.class);
-                            addValuesDatabaseIfnotExist(date, name);
+                if(isAdded()) {
+                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    Calendar c = Calendar.getInstance();
+                    for(DataSnapshot year : dataSnapshot.getChildren()) {
+                        for(DataSnapshot month : year.getChildren()) {
+                            for(DataSnapshot day : month.getChildren()) {
+                                String date = day.child(getResources().getString(R.string.date)).getValue(String.class);
+                                String name = day.child(getResources().getString(R.string.message)).getValue(String.class);
+                                addValuesDatabaseIfnotExist(date, name);
+                            }
                         }
                     }
+                    deleteValuesInDatabaseNotFound(timeBeforeDatabaseUpdate);
                 }
-                deleteValuesInDatabaseNotFound(timeBeforeDatabaseUpdate);
             }
 
             @Override

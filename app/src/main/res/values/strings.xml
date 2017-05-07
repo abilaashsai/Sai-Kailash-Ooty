@@ -16,5 +16,9 @@
   <string name="events" translatable="false">events</string>
   <string name="date" translatable="false">date</string>
   <string name="message" translatable="false">message</string>
+  <string name="blessing">With Swami\'s Blessing</string>
+  <string name="grace">With Swami\'s Grace</string>
+  <string name="article" translatable="false">Article</string>
+  <string name="articles" translatable="false">Articles</string>
 
 </resources>

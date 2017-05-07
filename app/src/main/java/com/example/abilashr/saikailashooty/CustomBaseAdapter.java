@@ -39,8 +39,9 @@ public class CustomBaseAdapter extends BaseAdapter {
 
         LayoutInflater mInflater = (LayoutInflater)
                 context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        convertView = mInflater.inflate(R.layout.event_name,null);
-        TextView textView =(TextView)convertView.findViewById(R.id.eventName);
+        convertView = mInflater.inflate(R.layout.article_title,null);
+        TextView textView =(TextView)convertView.findViewById(R.id.articleName);
+        textView.setText(events.get(position));
 
         return convertView;
     }

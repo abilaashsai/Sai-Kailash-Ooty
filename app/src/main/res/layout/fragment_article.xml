@@ -1,14 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.example.abilashr.saikailashooty.ArticleFragment"
-             android:background="@color/colorBackground">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackground"
+                tools:context="com.example.abilashr.saikailashooty.ArticleFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <Space
+    android:id="@+id/spaceFirst"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Article"/>
+    android:layout_height="15dp"/>
 
-</FrameLayout>
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/spaceFirst"
+    android:fontFamily="sans-serif-smallcaps"
+    android:gravity="center"
+    android:text="@string/articles"
+    android:textColor="@color/colorBlue"
+    android:textSize="25dp"/>
+
+  <View
+    android:id="@+id/line"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_below="@+id/title"
+    android:background="@color/colorPrimaryDark"/>
+
+  <Space
+    android:id="@+id/space"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_below="@+id/line"/>
+
+  <View
+    android:id="@+id/headDivider"
+    android:layout_width="match_parent"
+    android:layout_height="10sp"
+    android:layout_below="@id/space"
+    android:background="?android:attr/listDivider"/>
+
+  <ListView
+    android:id="@+id/articleList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/headDivider"
+    android:divider="@null"
+    />
+
+</RelativeLayout>
