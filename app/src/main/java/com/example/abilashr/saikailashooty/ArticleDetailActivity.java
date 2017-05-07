@@ -36,11 +36,17 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() == 0) {
+        if(getFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
         } else {
             super.onBackPressed(); //replaced
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        supportFinishAfterTransition();
+        return true;
+    }
 }

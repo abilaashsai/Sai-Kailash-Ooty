@@ -3,6 +3,7 @@ package com.example.abilashr.saikailashooty;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class ArticleDetailActivityFragment extends Fragment {
         ButterKnife.bind(this, rootView);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference(getResources().getString(R.string.article));
-        final String titleReceived = getActivity().getIntent().getStringExtra("title");
+        final String titleReceived = getActivity().getIntent().getStringExtra(getResources().getString(R.string.title));
         title.setText(titleReceived);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,5 +57,11 @@ public class ArticleDetailActivityFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getActivity().supportFinishAfterTransition();
+        return true;
     }
 }

@@ -46,9 +46,9 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                intent.putExtra("title", arrayList.get(i).toString());
-                LinearLayout imageView = (LinearLayout) rootView.findViewById(R.id.heading);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), (View) imageView, getResources().getString(R.string.titleAndImageTransition));
+                intent.putExtra(getResources().getString(R.string.title), arrayList.get(i).toString());
+                LinearLayout imageView = (LinearLayout) view.findViewById(R.id.heading);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), imageView, getResources().getString(R.string.titleAndImageTransition));
                 startActivity(intent, activityOptionsCompat.toBundle());
             }
         });
