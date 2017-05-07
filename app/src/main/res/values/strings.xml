@@ -21,5 +21,6 @@
   <string name="article" translatable="false">Article</string>
   <string name="articles" translatable="false">Articles</string>
   <string name="title_activity_article_detail">ArticleDetailActivity</string>
+  <string name="detail" translatable="false">detail</string>
 
 </resources>

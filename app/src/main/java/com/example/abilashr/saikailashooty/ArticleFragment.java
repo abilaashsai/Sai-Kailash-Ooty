@@ -29,7 +29,7 @@ public class ArticleFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_article, container, false);
         final ArrayList arrayList = new ArrayList();
@@ -42,6 +42,7 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(getActivity(),ArticleDetailActivity.class);
+                intent.putExtra("title",arrayList.get(i).toString());
                 startActivity(intent);
             }
         });
