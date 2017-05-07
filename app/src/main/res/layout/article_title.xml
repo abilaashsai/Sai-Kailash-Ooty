@@ -22,10 +22,12 @@
     >
 
     <LinearLayout
+      android:id="@+id/heading"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@color/colorBlue"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:transitionName="@string/titleAndImageTransition">
 
       <ImageView
         android:layout_width="100dp"

@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +35,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_article, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_article, container, false);
         final ArrayList arrayList = new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference(getResources().getString(R.string.article));
@@ -41,9 +45,11 @@ public class ArticleFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(getActivity(),ArticleDetailActivity.class);
-                intent.putExtra("title",arrayList.get(i).toString());
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                intent.putExtra("title", arrayList.get(i).toString());
+                LinearLayout imageView = (LinearLayout) rootView.findViewById(R.id.heading);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), (View) imageView, getResources().getString(R.string.titleAndImageTransition));
+                startActivity(intent, activityOptionsCompat.toBundle());
             }
         });
 
@@ -66,5 +72,11 @@ public class ArticleFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getActivity().supportFinishAfterTransition();
+        return true;
     }
 }
