@@ -2,10 +2,12 @@ package com.example.abilashr.saikailashooty;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,10 +21,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    android.support.v4.app.Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,10 +46,18 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        Fragment fragment = getFragmentManager().findFragmentByTag("fragment");
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentview, new HomeFragment()).addToBackStack("fragment").commit();
+    }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, new HomeFragment()).commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("some", 1);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -82,10 +94,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.Fragment fragment = null;
+        fragment = null;
 
         if(id == R.id.home) {
-            fragment = new HomeFragment()   ;
+            fragment = new HomeFragment();
 
         } else if(id == R.id.events) {
             fragment = new EventFragment();
@@ -97,7 +109,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new LocationFragment();
 
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, fragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentview, fragment).addToBackStack("fragment").commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
