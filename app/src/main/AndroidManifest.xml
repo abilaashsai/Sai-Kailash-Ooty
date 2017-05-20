@@ -37,6 +37,11 @@
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.example.abilashr.saikailashooty.MainActivity"/>
     </activity>
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+
+    <meta-data android:name="com.google.android.maps.v2.API_KEY"
+               android:value="@api_key/google_maps_api_key" />
+
   </application>
 
 </manifest>
