@@ -3,26 +3,35 @@ package com.example.abilashr.saikailashooty;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.provider.Telephony;
 import android.widget.RemoteViews;
 
-/**
- * Implementation of App Widget functionality.
- */
+import com.example.abilashr.saikailashooty.data.DataContract;
+import com.example.abilashr.saikailashooty.sync.ReminderFirebaseJobService;
+
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
 public class ThoughtForTheDayWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+                                int appWidgetId, Cursor cursor) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.thought_for_the_day_widget);
+        if(cursor != null) {
+            views.setTextViewText(R.id.thoughtitleWidget, cursor.getString(cursor.getColumnIndex(DataContract.ThoughtEntry.THOUGHT_TITLE)));
+            views.setTextViewText(R.id.thoughtdetailWidget, cursor.getString(cursor.getColumnIndex(DataContract.ThoughtEntry.THOUGHT_DETAIL)));
+        }
 
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        views.setOnClickPendingIntent(R.id.blessingsImageWidget,pendingIntent);
+        views.setOnClickPendingIntent(R.id.widget, pendingIntent);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -30,9 +39,20 @@ public class ThoughtForTheDayWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        Cursor cursor;
+        cursor = populateThoughtsFromDatabaseIfExist(context);
         for(int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+            if(cursor != null) {
+                cursor.moveToNext();
+            }
+            updateAppWidget(context, appWidgetManager, appWidgetId, cursor);
         }
+    }
+
+    private Cursor populateThoughtsFromDatabaseIfExist(Context context) {
+        Cursor cursor;
+        cursor = context.getContentResolver().query(DataContract.ThoughtEntry.CONTENT_URI, null, null, null, null);
+        return cursor;
     }
 
     @Override

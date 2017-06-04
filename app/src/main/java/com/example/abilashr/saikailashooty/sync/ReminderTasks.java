@@ -1,10 +1,13 @@
 package com.example.abilashr.saikailashooty.sync;
 
+import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
 import com.example.abilashr.saikailashooty.R;
+import com.example.abilashr.saikailashooty.ThoughtForTheDayWidget;
+import com.example.abilashr.saikailashooty.UpcomingFragment;
 import com.example.abilashr.saikailashooty.data.DataContract;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
