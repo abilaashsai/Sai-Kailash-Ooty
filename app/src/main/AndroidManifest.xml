@@ -38,6 +38,10 @@
         android:value="com.example.abilashr.saikailashooty.MainActivity"/>
     </activity>
 
+    <service
+      android:name=".sync.ReminderFirebaseJobService"
+      android:exported="false"/>
+
     <meta-data
       android:name="com.google.android.gms.version"
       android:value="@integer/google_play_services_version"/>
