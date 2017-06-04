@@ -23,5 +23,7 @@
   <string name="title_activity_article_detail">ArticleDetailActivity</string>
   <string name="detail" translatable="false">detail</string>
   <string name="titleAndImageTransition" translatable="false">titleAndImageTransition</string>
+  <string name="appwidget_text">EXAMPLE</string>
+  <string name="add_widget">Add widget</string>
 
 </resources>
