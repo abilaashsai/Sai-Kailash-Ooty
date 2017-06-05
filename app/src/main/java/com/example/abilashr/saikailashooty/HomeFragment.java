@@ -2,8 +2,11 @@ package com.example.abilashr.saikailashooty;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +43,20 @@ public class HomeFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         populateThoughtsFromDatabaseIfExist();
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_TITLE)));
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, cursor.getString(cursor.getColumnIndex(ThoughtEntry.THOUGHT_DETAIL)));
+                startActivity(Intent.createChooser(sharingIntent, getActivity().getResources().getString(R.string.ShareVia)));
+            }
+        });
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference(getResources().getString(R.string.thought));
