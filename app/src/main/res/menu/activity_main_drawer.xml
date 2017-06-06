@@ -5,19 +5,19 @@
     <item
       android:id="@+id/home"
       android:icon="@drawable/ic_menu_camera"
-      android:title="Home"/>
+      android:title="@string/homeTitle"/>
     <item
       android:id="@+id/events"
       android:icon="@drawable/ic_menu_gallery"
-      android:title="Events"/>
+      android:title="@string/eventTitle"/>
     <item
       android:id="@+id/article"
       android:icon="@drawable/ic_menu_slideshow"
-      android:title="Article"/>
+      android:title="@string/articleTitle"/>
     <item
       android:id="@+id/location"
       android:icon="@drawable/ic_menu_manage"
-      android:title="Location"/>
+      android:title="@string/locationTitle"/>
   </group>
 
 </menu>

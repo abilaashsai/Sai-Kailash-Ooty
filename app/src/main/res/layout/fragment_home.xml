@@ -21,7 +21,7 @@
       android:fontFamily="sans-serif-smallcaps"
       android:gravity="center"
       android:paddingTop="10dp"
-      android:text="Thought for the Day"
+      android:text="@string/thoughtForTheDay"
       android:textColor="#BF360C"
       android:textSize="22dp"/>
 
