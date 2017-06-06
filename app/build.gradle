@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'saikailash'
             keyPassword 'saikailash'
-            storeFile file('/Users/abilashr/udacity/material/SaiKailashOoty/keystore.jks')
+            storeFile file("$rootDir/keystore.jks")
             storePassword 'saikailash'
         }
     }
