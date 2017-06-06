@@ -103,7 +103,7 @@ public class EventFragment extends Fragment {
     }
 
     private void addValuesDatabaseIfnotExist(String date, String name) {
-        Cursor eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "= '" + name + "' AND " + DataContract.EventEntry.EVENT_DATE + "= '" + date + "'", null, null);
+        Cursor eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "= '" + name + "'", null, null);
         ContentValues contentValues = new ContentValues();
         if(eventFromDatabase.getCount() != 0) {
             contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
