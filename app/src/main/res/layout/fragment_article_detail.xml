@@ -26,7 +26,8 @@
       android:layout_gravity="center"
       android:paddingLeft="5dp"
       android:src="@drawable/sai_blessings_article"
-      android:transitionName="icon"/>
+      android:transitionName="icon"
+      android:contentDescription="@string/sai_photo"/>
 
     <TextView
       android:id="@+id/title"

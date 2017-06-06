@@ -22,7 +22,8 @@
       android:paddingRight="1dp"
       android:paddingTop="1dp"
       android:scaleType="fitCenter"
-      android:src="@drawable/sai_blessings_widget"/>
+      android:src="@drawable/sai_blessings_widget"
+      android:contentDescription="@string/sai_photo"/>
 
     <TextView
       android:id="@+id/thoughtitleWidget"

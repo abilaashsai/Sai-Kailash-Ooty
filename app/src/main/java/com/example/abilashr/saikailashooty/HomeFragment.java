@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment {
         populateThoughtsFromDatabaseIfExist();
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setContentDescription(getResources().getString(R.string.share_button));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

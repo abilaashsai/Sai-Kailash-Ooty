@@ -34,7 +34,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:paddingLeft="5dp"
-        android:src="@drawable/sai_blessings_article"/>
+        android:src="@drawable/sai_blessings_article"
+        android:contentDescription="@string/sai_photo"/>
 
       <TextView
         android:id="@+id/articleName"
