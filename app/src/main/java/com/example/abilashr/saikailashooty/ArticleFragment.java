@@ -24,8 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ArticleFragment extends Fragment {
-    public ArticleFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

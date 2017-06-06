@@ -18,10 +18,6 @@ import java.util.Locale;
 public class UpcomingFragment extends Fragment {
     Cursor cursor;
 
-    public UpcomingFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

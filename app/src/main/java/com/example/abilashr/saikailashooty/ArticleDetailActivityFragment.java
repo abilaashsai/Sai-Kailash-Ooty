@@ -26,9 +26,6 @@ public class ArticleDetailActivityFragment extends Fragment {
     @BindView(R.id.detail)
     TextView detail;
 
-    public ArticleDetailActivityFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

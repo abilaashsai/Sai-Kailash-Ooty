@@ -32,9 +32,6 @@ public class HomeFragment extends Fragment {
 
     Cursor cursor;
 
-    public HomeFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

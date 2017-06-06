@@ -28,10 +28,6 @@ public class EventFragment extends Fragment {
 
     FragmentTabHost fragmentTabHost;
 
-    public EventFragment() {
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
