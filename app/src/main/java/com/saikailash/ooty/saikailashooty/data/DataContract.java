@@ -1,10 +1,10 @@
-package com.example.abilashr.saikailashooty.data;
+package com.saikailash.ooty.saikailashooty.data;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class DataContract {
-    public static final String AUTHORITY = "com.example.abilashr.saikailashooty";
+    public static final String AUTHORITY = "com.saikailash.ooty.saikailashooty";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
     public static final String PATH_TASKS = "thought";
     public static final String EVENT_TASKS = "event";

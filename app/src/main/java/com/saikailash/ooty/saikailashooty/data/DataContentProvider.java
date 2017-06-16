@@ -1,4 +1,4 @@
-package com.example.abilashr.saikailashooty.data;
+package com.saikailash.ooty.saikailashooty.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import static com.example.abilashr.saikailashooty.data.DataContract.*;
+import static com.saikailash.ooty.saikailashooty.data.DataContract.*;
 
 public class DataContentProvider extends android.content.ContentProvider {
     private DbHelper dbHelper;

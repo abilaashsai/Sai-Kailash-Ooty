@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/colorBackground"
-              tools:context="com.example.abilashr.saikailashooty.LocationFragment">
+              tools:context="com.saikailash.ooty.saikailashooty.LocationFragment">
 
   <!--<TextView-->
     <!--android:layout_width="match_parent"-->

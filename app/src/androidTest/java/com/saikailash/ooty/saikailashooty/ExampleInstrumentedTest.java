@@ -1,4 +1,4 @@
-package com.example.abilashr.saikailashooty;
+package com.saikailash.ooty.saikailashooty;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

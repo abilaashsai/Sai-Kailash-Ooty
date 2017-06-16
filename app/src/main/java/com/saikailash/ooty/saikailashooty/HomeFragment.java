@@ -1,4 +1,4 @@
-package com.example.abilashr.saikailashooty;
+package com.saikailash.ooty.saikailashooty;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.abilashr.saikailashooty.data.DataContract.*;
+import static com.saikailash.ooty.saikailashooty.data.DataContract.*;
 
 public class HomeFragment extends Fragment {
     @BindView(R.id.thoughtitle)

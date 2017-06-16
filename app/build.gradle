@@ -8,6 +8,12 @@ android {
             storeFile file("$rootDir/keystore.jks")
             storePassword 'saikailash'
         }
+        release {
+            keyAlias 'SaiKailash'
+            keyPassword 'abilash'
+            storeFile file('/Users/abilashr/udacity/material/SaiKailashOoty/android.jks')
+            storePassword 'abilash'
+        }
     }
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
@@ -21,7 +27,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
@@ -30,6 +36,11 @@ android {
         }
     }
     dataBinding.enabled = true
+    productFlavors {
+        free {
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package com.example.abilashr.saikailashooty.sync;
+package com.saikailash.ooty.saikailashooty.sync;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

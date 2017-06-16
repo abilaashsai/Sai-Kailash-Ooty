@@ -1,4 +1,4 @@
-package com.example.abilashr.saikailashooty;
+package com.saikailash.ooty.saikailashooty;
 
 import org.junit.Test;
 

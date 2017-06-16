@@ -1,20 +1,14 @@
-package com.example.abilashr.saikailashooty;
+package com.saikailash.ooty.saikailashooty;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.provider.Telephony;
 import android.widget.RemoteViews;
 
-import com.example.abilashr.saikailashooty.data.DataContract;
-import com.example.abilashr.saikailashooty.sync.ReminderFirebaseJobService;
-
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import com.saikailash.ooty.saikailashooty.data.DataContract;
 
 public class ThoughtForTheDayWidget extends AppWidgetProvider {
 
