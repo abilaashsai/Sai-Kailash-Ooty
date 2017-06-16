@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty.sync;
+package com.saikailash.ooty.organization.sync;
 
 import android.content.Context;
 import android.os.AsyncTask;

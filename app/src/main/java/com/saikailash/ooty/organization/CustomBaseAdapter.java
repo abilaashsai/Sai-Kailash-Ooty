@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.app.Activity;
 import android.content.Context;

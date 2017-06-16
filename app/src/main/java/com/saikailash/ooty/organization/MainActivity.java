@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.saikailash.ooty.saikailashooty.sync.ReminderUtilities;
+import com.saikailash.ooty.organization.sync.ReminderUtilities;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

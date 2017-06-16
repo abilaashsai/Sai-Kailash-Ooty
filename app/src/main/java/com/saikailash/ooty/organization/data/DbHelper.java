@@ -1,10 +1,10 @@
-package com.saikailash.ooty.saikailashooty.data;
+package com.saikailash.ooty.organization.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.saikailash.ooty.saikailashooty.data.DataContract.*;
+import static com.saikailash.ooty.organization.data.DataContract.*;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "thought.db";

@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.saikailash.ooty.saikailashooty", appContext.getPackageName());
+        assertEquals("com.saikailash.ooty.organization", appContext.getPackageName());
     }
 }

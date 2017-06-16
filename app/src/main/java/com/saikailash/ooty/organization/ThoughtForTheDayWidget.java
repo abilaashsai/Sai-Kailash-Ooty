@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.widget.RemoteViews;
 
-import com.saikailash.ooty.saikailashooty.data.DataContract;
+import com.saikailash.ooty.organization.data.DataContract;
 
 public class ThoughtForTheDayWidget extends AppWidgetProvider {
 

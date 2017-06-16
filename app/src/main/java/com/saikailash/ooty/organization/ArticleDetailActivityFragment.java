@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

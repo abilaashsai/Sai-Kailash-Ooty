@@ -8,6 +8,6 @@ android:id="@+id/content_main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-android:name="com.saikailash.ooty.saikailashooty.HomeFragment"
+android:name="com.saikailash.ooty.organization.HomeFragment"
 tools:showIn="@layout/fragment_home">
 </fragment>

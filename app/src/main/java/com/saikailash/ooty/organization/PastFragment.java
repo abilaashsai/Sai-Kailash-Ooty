@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.saikailash.ooty.saikailashooty.data.DataContract;
+import com.saikailash.ooty.organization.data.DataContract;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

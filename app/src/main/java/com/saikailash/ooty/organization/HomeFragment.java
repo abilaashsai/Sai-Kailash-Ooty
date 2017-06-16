@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.saikailash.ooty.saikailashooty.data.DataContract.*;
+import static com.saikailash.ooty.organization.data.DataContract.*;
 
 public class HomeFragment extends Fragment {
     @BindView(R.id.thoughtitle)

@@ -1,4 +1,4 @@
-package com.saikailash.ooty.saikailashooty;
+package com.saikailash.ooty.organization;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
