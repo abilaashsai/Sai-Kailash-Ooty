@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Sai Kailash</string>
+  <string name="app_name">Sai Kailas</string>
 
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -32,7 +32,7 @@
   <string name="add_widget">Add widget</string>
   <string name="ShareVia">Share via</string>
   <string name="sai_photo">Sai Baba Photo</string>
-  <string name="sai_logo">Sai Kailash Logo</string>
+  <string name="sai_logo">Sai Kailas Logo</string>
   <string name="share_button">Share Button</string>
 
 </resources>

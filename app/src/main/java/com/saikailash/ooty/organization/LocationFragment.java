@@ -37,7 +37,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng saiKailash = new LatLng(11.376741, 76.749979);
-        mMap.addMarker(new MarkerOptions().position(saiKailash).title("Sai Kailash"));
+        mMap.addMarker(new MarkerOptions().position(saiKailash).title("Sai Kailas"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(saiKailash));
     }
 }
