@@ -12,7 +12,7 @@
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.saikailash.ooty.organization.HomeFragment">
+    tools:context="com.saikailas.ooty.organization.HomeFragment">
 
     <TextView
       android:id="@+id/heading"

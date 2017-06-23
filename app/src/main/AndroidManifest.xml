@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.saikailash.ooty.organization">
+          package="com.saikailas.ooty.organization">
 
   <application
     android:allowBackup="true"
@@ -9,7 +9,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity
-      android:name="com.saikailash.ooty.organization.MainActivity"
+      android:name="com.saikailas.ooty.organization.MainActivity"
       android:label="@string/app_name"
       android:theme="@style/AppTheme.NoActionBar"
       android:configChanges="orientation|screenSize">
@@ -21,26 +21,26 @@
     </activity>
 
     <provider
-      android:name="com.saikailash.ooty.organization.data.DataContentProvider"
-      android:authorities="com.saikailash.ooty.organization"
+      android:name="com.saikailas.ooty.organization.data.DataContentProvider"
+      android:authorities="com.saikailas.ooty.organization"
       android:exported="false"/>
     <provider
       android:name=".data.EventContentProvider"
-      android:authorities="com.saikailash.ooty.organization"
+      android:authorities="com.saikailas.ooty.organization"
       android:exported="false"/>
 
     <activity
-      android:name="com.saikailash.ooty.organization.ArticleDetailActivity"
+      android:name="com.saikailas.ooty.organization.ArticleDetailActivity"
       android:label="@string/app_name"
-      android:parentActivityName="com.saikailash.ooty.organization.MainActivity"
+      android:parentActivityName="com.saikailas.ooty.organization.MainActivity"
       android:theme="@style/AppTheme.NoActionBar">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.saikailash.ooty.organization.MainActivity"/>
+        android:value="com.saikailas.ooty.organization.MainActivity"/>
     </activity>
 
     <service
-      android:name="com.saikailash.ooty.organization.sync.ReminderFirebaseJobService"
+      android:name="com.saikailas.ooty.organization.sync.ReminderFirebaseJobService"
       android:exported="false"/>
 
     <meta-data
@@ -54,7 +54,7 @@
       android:name="com.google.firebase.messaging.default_notification_icon"
       android:resource="@drawable/sai_logo" />
 
-    <receiver android:name="com.saikailash.ooty.organization.ThoughtForTheDayWidget">
+    <receiver android:name="com.saikailas.ooty.organization.ThoughtForTheDayWidget">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
       </intent-filter>

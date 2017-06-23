@@ -1,4 +1,4 @@
-package com.saikailash.ooty.organization;
+package com.saikailas.ooty.organization;
 
 import android.content.Intent;
 import android.os.Bundle;

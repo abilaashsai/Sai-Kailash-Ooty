@@ -1,11 +1,11 @@
-package com.saikailash.ooty.organization.sync;
+package com.saikailas.ooty.organization.sync;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.saikailash.ooty.organization.R;
-import com.saikailash.ooty.organization.data.DataContract;
+import com.saikailas.ooty.organization.R;
+import com.saikailas.ooty.organization.data.DataContract;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

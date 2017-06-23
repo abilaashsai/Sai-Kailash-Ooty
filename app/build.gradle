@@ -2,23 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'saikailash'
-            keyPassword 'saikailash'
-            storeFile file("$rootDir/keystore.jks")
-            storePassword 'saikailash'
-        }
-        release {
-            keyAlias 'SaiKailash'
-            keyPassword 'abilash'
-            storeFile file('/Users/abilashr/udacity/material/SaiKailashOoty/android.jks')
-            storePassword 'abilash'
-        }
     }
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "com.saikailash.ooty.organization"
+        applicationId "com.saikailas.ooty.organization"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
@@ -29,16 +17,13 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
         debug {
-            signingConfig signingConfigs.config
         }
     }
     dataBinding.enabled = true
     productFlavors {
         free {
-            signingConfig signingConfigs.release
         }
     }
 }

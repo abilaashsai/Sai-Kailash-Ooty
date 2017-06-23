@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorBackground"
-                tools:context="com.saikailash.ooty.organization.ArticleFragment">
+                tools:context="com.saikailas.ooty.organization.ArticleFragment">
 
   <Space
     android:id="@+id/spaceFirst"
