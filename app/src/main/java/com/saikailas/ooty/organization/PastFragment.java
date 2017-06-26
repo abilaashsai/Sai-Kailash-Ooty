@@ -27,7 +27,7 @@ public class PastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_past, container, false);
-        cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_DATE + "< '" + getDateAndTime() + "'", null, DataContract.EventEntry.EVENT_DATE);
+        cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_DATE + "< '" + getDateAndTime() + "'", null, DataContract.EventEntry.EVENT_DATE + " DESC");
         CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(getContext(), cursor);
         if(cursor.getCount() != 0) {
             cursor.moveToNext();
@@ -36,6 +36,7 @@ public class PastFragment extends Fragment {
         listView.setAdapter(customCursorAdapter);
         return rootView;
     }
+
     private String getDateAndTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
