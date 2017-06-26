@@ -121,7 +121,7 @@ public class EventFragment extends Fragment {
 
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "yyyy-MM-dd", Locale.getDefault());
         DateFormat input = new SimpleDateFormat("dd MMM yyyy");
         Date date = new Date();
 
