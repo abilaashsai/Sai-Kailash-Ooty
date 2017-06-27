@@ -2,6 +2,7 @@ package com.saikailas.ooty.organization;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -112,7 +113,9 @@ public class EventFragment extends Fragment {
             contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
             contentValues.put(DataContract.EventEntry.EVENT_DATE, getTimstampforDate(date));
             contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
-            getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
+            Uri insertedUri = getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
+            eventFromDatabase.setNotificationUri(getActivity().getContentResolver(), DataContract.EventEntry.CONTENT_URI);
+            getActivity().getContentResolver().notifyChange(insertedUri, null);
 
         }
     }

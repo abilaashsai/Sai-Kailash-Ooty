@@ -1,7 +1,9 @@
 package com.saikailas.ooty.organization;
 
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.util.Locale;
 
 public class PastFragment extends Fragment {
     Cursor cursor;
+    ContentObserver contentObserver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,22 @@ public class PastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_past, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_past, container, false);
+        updateUI(rootView);
+
+        contentObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                updateUI(rootView);
+            }
+        };
+        getActivity().getContentResolver().registerContentObserver(DataContract.EventEntry.CONTENT_URI, false, contentObserver);
+
+        return rootView;
+    }
+
+    private void updateUI(View rootView) {
         cursor = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_DATE + "< '" + getDateAndTime() + "'", null, DataContract.EventEntry.EVENT_DATE + " DESC");
         CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(getContext(), cursor);
         if(cursor.getCount() != 0) {
@@ -34,7 +52,12 @@ public class PastFragment extends Fragment {
         }
         ListView listView = (ListView) rootView.findViewById(R.id.pastList);
         listView.setAdapter(customCursorAdapter);
-        return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().getContentResolver().unregisterContentObserver(contentObserver);
     }
 
     private String getDateAndTime() {
