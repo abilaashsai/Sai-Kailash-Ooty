@@ -22,9 +22,12 @@ public class CustomCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         TextView eventDate = (TextView) view.findViewById(R.id.eventDate);
         TextView eventName = (TextView) view.findViewById(R.id.eventName);
+        TextView eventType = (TextView) view.findViewById(R.id.eventType);
         String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
         eventDate.setText(date);
         eventName.setText(name);
+        eventType.setText(type);
     }
 }

@@ -63,7 +63,8 @@ public class EventFragment extends Fragment {
                             for(DataSnapshot day : month.getChildren()) {
                                 String date = day.child(getResources().getString(R.string.date)).getValue(String.class);
                                 String name = day.child(getResources().getString(R.string.message)).getValue(String.class);
-                                addValuesDatabaseIfnotExist(date, name);
+                                String type = day.child(getResources().getString(R.string.type)).getValue(String.class);
+                                addValuesDatabaseIfnotExist(date, name, type);
                             }
                         }
                     }
@@ -95,7 +96,7 @@ public class EventFragment extends Fragment {
         return getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, null, null, null);
     }
 
-    private void addValuesDatabaseIfnotExist(String date, String name) {
+    private void addValuesDatabaseIfnotExist(String date, String name, String type) {
         Cursor eventFromDatabase;
         if(name.contains("'")) {
             eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "='" + name.replaceAll("'", "''").toString() + "'", null, null);
@@ -114,12 +115,15 @@ public class EventFragment extends Fragment {
                     getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry._ID + "< '" + trackingId + "'", null);
                 }
                 trackingId = databaseId;
-
+            }
+            if(!DataContract.EventEntry.EVENT_TYPE.equals(type)) {
+                contentValues.put(DataContract.EventEntry.EVENT_TYPE, type);
             }
             contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
         } else {
             contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
             contentValues.put(DataContract.EventEntry.EVENT_DATE, getTimstampforDate(date));
+            contentValues.put(DataContract.EventEntry.EVENT_TYPE, type);
             contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
             Uri insertedUri = getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
             eventFromDatabase.setNotificationUri(getActivity().getContentResolver(), DataContract.EventEntry.CONTENT_URI);

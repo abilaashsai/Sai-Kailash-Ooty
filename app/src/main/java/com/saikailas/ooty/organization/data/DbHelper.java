@@ -8,7 +8,7 @@ import static com.saikailas.ooty.organization.data.DataContract.*;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "thought.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, null);
@@ -30,15 +30,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 EventEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EventEntry.EVENT_NAME + " TEXT NOT NULL," +
                 EventEntry.EVENT_DATE + " TIMESTAMP NOT NULL," +
+                EventEntry.EVENT_TYPE + " TEXT," +
                 EventEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_EVENT_TABLE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ThoughtEntry.TABLE_NAME);
-        onCreate(sqLiteDatabase);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EventEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }

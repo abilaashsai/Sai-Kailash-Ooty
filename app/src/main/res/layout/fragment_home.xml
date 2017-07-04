@@ -22,7 +22,7 @@
       android:gravity="center"
       android:paddingTop="10dp"
       android:text="@string/thoughtForTheDay"
-      android:textColor="#BF360C"
+      android:textColor="@color/colorOrangeTitle"
       android:textSize="22dp"/>
 
     <TextView
