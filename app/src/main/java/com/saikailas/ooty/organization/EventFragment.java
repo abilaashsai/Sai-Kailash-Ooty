@@ -6,17 +6,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
 
-import com.saikailas.ooty.organization.data.DataContract;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.saikailas.ooty.organization.data.DataContract;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +29,7 @@ import java.util.Locale;
 public class EventFragment extends Fragment {
 
     FragmentTabHost fragmentTabHost;
+    int trackingId = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,6 @@ public class EventFragment extends Fragment {
         TabHost.TabSpec tabSpecPast = fragmentTabHost.newTabSpec(getResources().getString(R.string.past)).setIndicator(getResources().getString(R.string.past), null);
         fragmentTabHost.addTab(tabSpecPast, PastFragment.class, null);
 
-        final String timeBeforeDatabaseUpdate = getDateAndTime();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         String events = getResources().getString(R.string.events);
         String upcoming = getResources().getString(R.string.upcoming);
@@ -66,7 +67,6 @@ public class EventFragment extends Fragment {
                             }
                         }
                     }
-                    deleteValuesInDatabaseNotFound(timeBeforeDatabaseUpdate);
                 }
             }
 
@@ -91,10 +91,6 @@ public class EventFragment extends Fragment {
         return rootView;
     }
 
-    private void deleteValuesInDatabaseNotFound(String dateTime) {
-        getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry.COLUMN_TIMESTAMP + "< '" + dateTime + "'", null);
-    }
-
     private Cursor getAllEventsFromDatabase() {
         return getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, null, null, null);
     }
@@ -108,6 +104,18 @@ public class EventFragment extends Fragment {
         }
         ContentValues contentValues = new ContentValues();
         if(eventFromDatabase.getCount() != 0) {
+            eventFromDatabase.moveToNext();
+            int databaseId = Integer.parseInt(eventFromDatabase.getString(eventFromDatabase.getColumnIndex(DataContract.EventEntry._ID)));
+            if(trackingId == 0) {
+                trackingId = databaseId;
+            } else {
+                trackingId++;
+                if(trackingId != databaseId) {
+                    getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry._ID + "< '" + trackingId + "'", null);
+                }
+                trackingId = databaseId;
+
+            }
             contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
         } else {
             contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
@@ -149,7 +157,7 @@ public class EventFragment extends Fragment {
 
     private String getDateAndTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }

@@ -81,18 +81,27 @@ public class DataContentProvider extends android.content.ContentProvider {
     @Override
     public int delete(Uri uri, String s, String[] strings) {
         final SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int rowsDeleted = 0;
+
         int match = sUriMatcher.match(uri);
         if(match == THOUGHT) {
             sqLiteDatabase.execSQL("delete from " + ThoughtEntry.TABLE_NAME);
         }
         if(match == EVENT) {
-            sqLiteDatabase.delete(ThoughtEntry.TABLE_NAME,s,strings);
+            sqLiteDatabase.delete(EventEntry.TABLE_NAME,s,strings);
         }
-        return 0;
+        return rowsDeleted;
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        return 0;
+        final SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int rowsUpdated = 0;
+
+        int match = sUriMatcher.match(uri);
+        if(match == EVENT) {
+            rowsUpdated = sqLiteDatabase.update(EventEntry.TABLE_NAME, contentValues, s, strings);
+        }
+        return rowsUpdated;
     }
 }
