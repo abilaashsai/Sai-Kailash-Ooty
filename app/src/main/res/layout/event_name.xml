@@ -21,6 +21,7 @@
     >
 
     <LinearLayout
+      android:id="@+id/eventTitle"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_gravity="center"
@@ -44,7 +45,8 @@
           android:maxLines="1"
           android:paddingLeft="7dp"
           android:textColor="@color/colorWhite"
-          android:textSize="20dp"/>
+          android:textSize="20dp"
+          android:transitionName="@string/eventDateTransition"/>
 
         <TextView
           android:id="@+id/eventType"
@@ -69,7 +71,9 @@
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:transitionName="@string/eventTitleTransition"
+        />
     </LinearLayout>
   </android.support.v7.widget.CardView>
 

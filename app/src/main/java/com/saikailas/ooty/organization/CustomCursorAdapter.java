@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CustomCursorAdapter extends CursorAdapter {
     public CustomCursorAdapter(Context context, Cursor c) {
         super(context, c);
@@ -26,8 +30,27 @@ public class CustomCursorAdapter extends CursorAdapter {
         String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
-        eventDate.setText(date);
+
+        eventDate.setText(getDateDisplayFormat(date));
         eventName.setText(name);
         eventType.setText(type);
+    }
+
+    private String getDateDisplayFormat(String dateString) {
+        String inputPattern = "yyyy-MM-dd";
+        String outputPattern = "dd MMM yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String dateOutput = null;
+
+        try {
+            date = inputFormat.parse(dateString);
+            dateOutput = outputFormat.format(date);
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+        return dateOutput;
     }
 }

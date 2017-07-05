@@ -29,11 +29,15 @@
   <string name="title_activity_article_detail">ArticleDetailActivity</string>
   <string name="detail" translatable="false">detail</string>
   <string name="titleAndImageTransition" translatable="false">titleAndImageTransition</string>
+  <string name="eventDateTransition" translatable="false">eventDateTransition</string>
+  <string name="eventTitleTransition" translatable="false">eventTitleTransition</string>
   <string name="appwidget_text">EXAMPLE</string>
   <string name="add_widget">Add widget</string>
   <string name="ShareVia">Share via</string>
   <string name="sai_photo">Sai Baba Photo</string>
   <string name="sai_logo">Sai Kailas Logo</string>
   <string name="share_button">Share Button</string>
+  <string name="title_activity_event_detail">Sai Kailas</string>
+  <string name="name" translatable="false">name</string>
 
 </resources>
