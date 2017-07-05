@@ -72,6 +72,8 @@
         android:gravity="center"
         android:textColor="@color/colorWhite"
         android:textSize="20dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
         android:transitionName="@string/eventTitleTransition"
         />
     </LinearLayout>

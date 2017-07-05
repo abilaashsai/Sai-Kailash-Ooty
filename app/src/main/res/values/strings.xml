@@ -28,6 +28,7 @@
   <string name="articles" translatable="false">Articles</string>
   <string name="title_activity_article_detail">ArticleDetailActivity</string>
   <string name="detail" translatable="false">detail</string>
+  <string name="loading">Loading...</string>
   <string name="titleAndImageTransition" translatable="false">titleAndImageTransition</string>
   <string name="eventDateTransition" translatable="false">eventDateTransition</string>
   <string name="eventTitleTransition" translatable="false">eventTitleTransition</string>

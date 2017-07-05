@@ -2,7 +2,6 @@ package com.saikailas.ooty.organization;
 
 import android.app.Activity;
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,40 +9,43 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
-public class CustomBaseAdapter extends BaseAdapter {
+public class CustomImageAdapter extends BaseAdapter {
     Context context;
-    List<String> events;
+    List<String> imageUrl;
 
-    public CustomBaseAdapter(Context context, List<String> events) {
+    public CustomImageAdapter(Context context, List<String> imageUrl) {
         this.context = context;
-        this.events = events;
+        this.imageUrl = imageUrl;
     }
 
     @Override
     public int getCount() {
-        return events.size();
+        return imageUrl.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return events.get(i);
+    public Object getItem(int position) {
+        return imageUrl.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return events.indexOf(getItem(i));
+    public long getItemId(int position) {
+        return imageUrl.indexOf(getItem(position));
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-
         LayoutInflater mInflater = (LayoutInflater)
                 context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        convertView = mInflater.inflate(R.layout.article_title,null);
-        TextView textView =(TextView)convertView.findViewById(R.id.articleName);
-        textView.setText(events.get(position));
+        convertView = mInflater.inflate(R.layout.event_image, null);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.eventImage);
+        Glide.with(context)
+                .load(imageUrl.get(position))
+                .into(imageView);
 
         return convertView;
     }
