@@ -29,7 +29,6 @@ import java.util.Locale;
 public class EventFragment extends Fragment {
 
     FragmentTabHost fragmentTabHost;
-    int trackingId = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,17 +57,22 @@ public class EventFragment extends Fragment {
                 if(isAdded()) {
                     String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Calendar c = Calendar.getInstance();
+                    deleteValuesFromDatabase();
                     for(DataSnapshot year : dataSnapshot.getChildren()) {
                         for(DataSnapshot month : year.getChildren()) {
                             for(DataSnapshot day : month.getChildren()) {
                                 String date = day.child(getResources().getString(R.string.date)).getValue(String.class);
                                 String name = day.child(getResources().getString(R.string.message)).getValue(String.class);
                                 String type = day.child(getResources().getString(R.string.type)).getValue(String.class);
-                                addValuesDatabaseIfnotExist(date, name, type);
+                                addValuesDatabase(date, name, type);
                             }
                         }
                     }
                 }
+            }
+
+            private void deleteValuesFromDatabase() {
+                getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, null, null);
             }
 
             @Override
@@ -96,40 +100,21 @@ public class EventFragment extends Fragment {
         return getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, null, null, null);
     }
 
-    private void addValuesDatabaseIfnotExist(String date, String name, String type) {
-        Cursor eventFromDatabase;
+    private void addValuesDatabase(String date, String name, String type) {
+        Cursor eventFromDatabase = null;
         if(name.contains("'")) {
             eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "='" + name.replaceAll("'", "''").toString() + "'", null, null);
         } else {
             eventFromDatabase = getActivity().getContentResolver().query(DataContract.EventEntry.CONTENT_URI, null, DataContract.EventEntry.EVENT_NAME + "= '" + name + "'", null, null);
         }
         ContentValues contentValues = new ContentValues();
-        if(eventFromDatabase.getCount() != 0) {
-            eventFromDatabase.moveToNext();
-            int databaseId = Integer.parseInt(eventFromDatabase.getString(eventFromDatabase.getColumnIndex(DataContract.EventEntry._ID)));
-            if(trackingId == 0) {
-                trackingId = databaseId;
-            } else {
-                trackingId++;
-                if(trackingId != databaseId) {
-                    getActivity().getContentResolver().delete(DataContract.EventEntry.CONTENT_URI, DataContract.EventEntry._ID + "< '" + trackingId + "'", null);
-                }
-                trackingId = databaseId;
-            }
-            if(!DataContract.EventEntry.EVENT_TYPE.equals(type)) {
-                contentValues.put(DataContract.EventEntry.EVENT_TYPE, type);
-            }
-            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
-        } else {
-            contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
-            contentValues.put(DataContract.EventEntry.EVENT_DATE, getTimstampforDate(date));
-            contentValues.put(DataContract.EventEntry.EVENT_TYPE, type);
-            contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
-            Uri insertedUri = getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
-            eventFromDatabase.setNotificationUri(getActivity().getContentResolver(), DataContract.EventEntry.CONTENT_URI);
-            getActivity().getContentResolver().notifyChange(insertedUri, null);
-
-        }
+        contentValues.put(DataContract.EventEntry.EVENT_NAME, name);
+        contentValues.put(DataContract.EventEntry.EVENT_DATE, getTimstampforDate(date));
+        contentValues.put(DataContract.EventEntry.EVENT_TYPE, type);
+        contentValues.put(DataContract.EventEntry.COLUMN_TIMESTAMP, getDateAndTime());
+        Uri insertedUri = getActivity().getContentResolver().insert(DataContract.EventEntry.CONTENT_URI, contentValues);
+        eventFromDatabase.setNotificationUri(getActivity().getContentResolver(), DataContract.EventEntry.CONTENT_URI);
+        getActivity().getContentResolver().notifyChange(insertedUri, null);
     }
 
     private String getTimstampforDate(String dateString) {

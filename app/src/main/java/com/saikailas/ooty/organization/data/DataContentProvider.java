@@ -88,7 +88,7 @@ public class DataContentProvider extends android.content.ContentProvider {
             sqLiteDatabase.execSQL("delete from " + ThoughtEntry.TABLE_NAME);
         }
         if(match == EVENT) {
-            sqLiteDatabase.delete(EventEntry.TABLE_NAME,s,strings);
+            sqLiteDatabase.execSQL("delete from " + EventEntry.TABLE_NAME);
         }
         return rowsDeleted;
     }
