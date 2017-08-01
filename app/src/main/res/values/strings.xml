@@ -24,7 +24,7 @@
   <string name="type" translatable="false">type</string>
   <string name="blessing">With Swami\'s Blessing</string>
   <string name="grace">With Swami\'s Grace</string>
-  <string name="article" translatable="false">Article</string>
+  <string name="article" translatable="false">article</string>
   <string name="articles" translatable="false">Articles</string>
   <string name="title_activity_article_detail">ArticleDetailActivity</string>
   <string name="detail" translatable="false">detail</string>
@@ -40,5 +40,12 @@
   <string name="share_button">Share Button</string>
   <string name="title_activity_event_detail">Sai Kailas</string>
   <string name="name" translatable="false">name</string>
+  <string name="paragraph" translatable="false">paragraph</string>
+  <string name="paratitle" translatable="false">paratitle</string>
+  <string name="paradetail" translatable="false">paradetail</string>
+  <string name="image" translatable="false">image</string>
+  <string name="description" translatable="false">description</string>
+  <string name="one" translatable="false">1</string>
+  <string name="blank" translatable="false"></string>
 
 </resources>
